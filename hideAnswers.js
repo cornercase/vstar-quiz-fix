@@ -8,12 +8,13 @@
 //})
 
 
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-      if (request.hidePlz == true) {
+      if (request.command === 'hideAnswers') {
           sendResponse({fncall: "hide"});
 
           $('.quizreviewsummary').hide();
@@ -35,7 +36,7 @@ chrome.runtime.onMessage.addListener(
       }
   
       
-      if (request.hidePlz == false) {
+      if (request.command === 'showAnswers') {
           sendResponse({fncall: "show"});
           $('.quizreviewsummary').show();
           $('.answer .incorrect').addClass('incorrect');
@@ -54,6 +55,18 @@ chrome.runtime.onMessage.addListener(
           $('.questioncorrectnessicon').show();
       
       }
+
+
+      if (request.command === 'floatNavBlock') {
+          $("#mod_quiz_navblock").css({'position': 'fixed'});
+
+      }
+
+      if (request.command === 'unfloatNavBlock') {
+          $("#mod_quiz_navblock").css({'position': ''});
+
+      }
+      
   }
   );
 
