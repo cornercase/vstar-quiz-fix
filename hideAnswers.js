@@ -7,10 +7,11 @@
 //	$('body').html($(copy))
 //})
 
-
+var hasHiddenOnce = 0;
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
+    function(request, sender, sendResponse) {
+    
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
@@ -21,7 +22,9 @@ chrome.runtime.onMessage.addListener(
           $('.answer .incorrect').removeClass('incorrect');
           $('.answer .correct').removeClass('correct');
           $('.outcome').hide();
-          $(':radio').removeAttr("checked");
+          if (hasHiddenOnce === 0) {
+              $(':radio').removeAttr("checked");
+          }
           $('.answer .icon').hide();
           $('#mod_quiz_navblock .incorrect').removeClass('incorrect');
           $('#mod_quiz_navblock .flagged').removeClass('flagged');
@@ -32,7 +35,7 @@ chrome.runtime.onMessage.addListener(
           $('.state').hide();
           $('.questionflagtext').hide();
           $('.questioncorrectnessicon').hide();
-
+          hasHiddenOnce = 1;
       }
   
       
@@ -42,7 +45,6 @@ chrome.runtime.onMessage.addListener(
           $('.answer .incorrect').addClass('incorrect');
           $('.answer .correct').addClass('correct');
           $('.outcome').show();
-          $(':radio').removeAttr("checked");
           $('.answer .icon').show();
           $('#mod_quiz_navblock .incorrect').addClass('incorrect');
           $('#mod_quiz_navblock .flagged').addClass('flagged');
