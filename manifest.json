@@ -9,7 +9,7 @@
     "content_scripts": [
         {
             "matches": ["https://vstar-learn.app.vanderbilt.edu/*"],
-            "js": ["jquery-2.2.0.min.js","hideAnswers.js"],
+            "js": ["jquery-3.0.0.min.js","hideAnswers.js"],
             "run_at": "document_end"
         }
     ],
