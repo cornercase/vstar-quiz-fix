@@ -3,7 +3,7 @@
 
     "name": "Quiz Fix",
     "description": "Hide quiz answers on VStar for review purposes",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "author": "Eamon Doyle",
     "icons": { "128": "images/icon128.png"},  
     "content_scripts": [
